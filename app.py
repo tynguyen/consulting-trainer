@@ -35,8 +35,8 @@ I will answer you in the most concrete way.
 I can't ask you questions.
 You can't give me orders or assume things I haven't told you.
 Your questions must be clear and without bias.
-You can ask me up to 2 questions.
-After 2 questions, just thank your interlocutor for the conversation, and say <CAMEL_TASK_DONE> to end the task.
+You can ask me up to 10 questions.
+After 10 questions, just thank your interlocutor for the conversation, and say <CAMEL_TASK_DONE> to end the task.
 Never say <CAMEL_TASK_DONE> unless you want to end the task.
 
 You must greet me cordially and say goodbye kindly."""
@@ -151,15 +151,15 @@ if task and customer_role_name and consultant_role_name:
             n += 1
             user_ai_msg = user_agent.step(assistant_msg)
             user_msg = HumanMessage(content=user_ai_msg.content)
-            st.text(f"Me: ({consultant_role_name}):\n\n{user_msg.content}\n\n")
+            st.text(f"Me ({consultant_role_name}):\n\n{user_msg.content}\n\n")
             
             time.sleep(21)
             
             assistant_ai_msg = assistant_agent.step(user_msg)
             assistant_msg = HumanMessage(content=assistant_ai_msg.content)
-            st.text(f"Customer: ({customer_role_name}):\n\n{assistant_msg.content}\n\n")
+            st.text(f"Customer ({customer_role_name}):\n\n{assistant_msg.content}\n\n")
             time.sleep(21)
             
-            if n == 2:
+            if n == 8:
                 st.text(f"Thank you ({customer_role_name}) for your time.")
                 break
