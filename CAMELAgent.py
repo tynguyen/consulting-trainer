@@ -1,3 +1,10 @@
+from langchain.schema import (
+    AIMessage,
+    HumanMessage,
+    SystemMessage,
+    BaseMessage,
+)
+
 class CAMELAgent:
 
     def __init__(
