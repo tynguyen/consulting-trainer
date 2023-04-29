@@ -61,7 +61,7 @@ html_temp = """
 with st.sidebar:
     st.markdown("""
     # About 
-    Consulting Trainer is a helper tool built on [CAMEL](https://github.com/SamurAIGPT/Camel-AutoGPT/) and LangChain](https://langchain.com) to help your co-workers to the consulting projects and understand the needs and requirements of your customers. 
+    Consulting Trainer is a helper tool built on [CAMEL](https://github.com/SamurAIGPT/Camel-AutoGPT/) and [LangChain](https://langchain.com) to help your co-workers to the consulting projects and understand the needs and requirements of your customers. 
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.16)"),unsafe_allow_html=True)
     st.markdown("""
@@ -143,7 +143,7 @@ footer{
 st.markdown(hide, unsafe_allow_html=True)
 
 
-if task and customer_role_name and you_role_name:
+if task and customer_role_name and consultant_role_name:
     prompt = "Structure of a meeting to discuss the project on "+str(task)+" between "+str(customer_role_name)+" and you as a "+str(consultant_role_name)
     task_full = "Build the structure of a meeting for a project about "+str(task)
     word_limit = 50 # word limit for task brainstorming
