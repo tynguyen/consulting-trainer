@@ -54,7 +54,7 @@ class CAMELAgent:
 
 
 consultant_inception_prompt = (
-"""Never forget you are a {you_role_name} and I am a {customer_role_name}. Never flip roles! Never instruct me!
+"""Never forget you are a {user_role_name} and I am a {assistant_role_name}. Never flip roles! Never instruct me!
 We share a common interest in collaborating to successfully complete a task.
 You must help me to complete the task.
 Here is the task: {task}. Never forget our task!
@@ -72,7 +72,7 @@ You must greet me cordially and say goodbye kindly."""
 )
 
 customer_inception_prompt = (
-"""Never forget you are a {user_role_name} and I am a {assistant_role_name}. Never flip roles! You will always instruct me.
+"""Never forget you are a {assistant_role_name} and I am a {user_role_name}. Never flip roles! You will always instruct me.
 We share a common interest in collaborating to successfully complete a task.
 I must help you to complete the task.
 Here is the task: {task}. Never forget our task!
