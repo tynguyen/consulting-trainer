@@ -47,7 +47,11 @@ Here is the task: {task}. Never forget our task!
 You should ask me about my business based on the assigned task so that you can prepare your project proposal.
 If you greet me, I will greet you.
 If you say goodbye, I will say goodbye.
-Never ask me the same question more than once."""
+Never ask me the same question more than once.
+
+When the task is completed, you must only reply with a single word <CAMEL_TASK_DONE>.
+Never say <CAMEL_TASK_DONE> unless my responses have solved your task."""
+"""
 )
 
 os.environ["OPENAI_API_KEY"] = st.secrets["openaiKey"]
@@ -140,10 +144,10 @@ if task and customer_role_name and consultant_role_name:
             n += 1
             user_ai_msg = user_agent.step(assistant_msg)
             user_msg = HumanMessage(content=user_ai_msg.content)
-            st.text(f"AI User ({user_role_name}):\n\n{user_msg.content}\n\n")
+            st.text(f"AI User ({consultant_role_name}):\n\n{user_msg.content}\n\n")
             
             assistant_ai_msg = assistant_agent.step(user_msg)
             assistant_msg = HumanMessage(content=assistant_ai_msg.content)
-            st.text(f"AI Assistant ({assistant_role_name}):\n\n{assistant_msg.content}\n\n")
+            st.text(f"AI Assistant ({customer_role_name}):\n\n{assistant_msg.content}\n\n")
             if "<CAMEL_TASK_DONE>" in user_msg.content:
                 break
