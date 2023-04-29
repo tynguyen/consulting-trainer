@@ -1,4 +1,5 @@
 from langchain.chat_models import ChatOpenAI
+from typing import List
 from langchain.schema import (
     AIMessage,
     HumanMessage,
