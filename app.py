@@ -50,7 +50,7 @@ If you say goodbye, I will say goodbye.
 Never ask me the same question more than once.
 
 When the task is completed, you must only reply with a single word <CAMEL_TASK_DONE>.
-Never say <CAMEL_TASK_DONE> unless my responses have solved your task."""
+Never say <CAMEL_TASK_DONE> unless my responses have solved your task.
 """
 )
 
