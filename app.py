@@ -18,6 +18,7 @@ from langchain.schema import (
     BaseMessage,
 )
 import os
+import CAMELAgent
 
 consultant_inception_prompt = (
 """Never forget you are a {you_role_name} and I am a {customer_role_name}. Never flip roles! Never instruct me!
