@@ -50,7 +50,7 @@ If you say goodbye, I will say goodbye.
 Never ask me the same question more than once."""
 )
 
-openai.api_key = st.secrets["openaiKey"]
+os.environ["OPENAI_API_KEY"] = st.secrets["openaiKey"]
 
 st.set_page_config(page_title="Consulting Trainer")
 
