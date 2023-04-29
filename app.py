@@ -18,7 +18,7 @@ from langchain.schema import (
     BaseMessage,
 )
 import os
-import CAMELAgent
+from CAMELAgent import CAMELAgent
 
 
 consultant_inception_prompt = (
