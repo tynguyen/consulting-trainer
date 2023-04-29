@@ -19,6 +19,8 @@ from langchain.schema import (
 )
 import os
 from CAMELAgent import CAMELAgent
+import time
+
 
 
 consultant_inception_prompt = (
@@ -133,8 +135,7 @@ if task and customer_role_name and consultant_role_name:
         # Initialize chats 
         assistant_msg = HumanMessage(
             content=(f"{user_sys_msg.content}. "
-                        "Now start to give me all the questions in one dialog. "
-                        "Only reply with Question"))
+                        "Now start to give me the questions one by one."))
 
         user_msg = HumanMessage(content=f"{assistant_sys_msg.content}")
         user_msg = assistant_agent.step(user_msg)
@@ -144,10 +145,12 @@ if task and customer_role_name and consultant_role_name:
             n += 1
             user_ai_msg = user_agent.step(assistant_msg)
             user_msg = HumanMessage(content=user_ai_msg.content)
-            st.text(f"AI User ({consultant_role_name}):\n\n{user_msg.content}\n\n")
+            st.text(f"Me: ({consultant_role_name}):\n\n{user_msg.content}\n\n")
+            
+            time.sleep(21)
             
             assistant_ai_msg = assistant_agent.step(user_msg)
             assistant_msg = HumanMessage(content=assistant_ai_msg.content)
-            st.text(f"AI Assistant ({customer_role_name}):\n\n{assistant_msg.content}\n\n")
+            st.text(f"Customer: ({customer_role_name}):\n\n{assistant_msg.content}\n\n")
             if "<CAMEL_TASK_DONE>" in user_msg.content:
                 break
