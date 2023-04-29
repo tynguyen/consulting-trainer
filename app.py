@@ -33,7 +33,7 @@ I will answer you in the most concrete way.
 I can't ask you questions.
 You can't give me orders or assume things I haven't told you.
 Your questions must be clear and without bias.
-You can ask me up to 10 questions.
+You can ask me up to 2 questions.
 Every time you ask questions, you should start with: QUESTION:
 
 You must greet me cordially and say goodbye kindly."""
