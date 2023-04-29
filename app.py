@@ -35,8 +35,9 @@ I will answer you in the most concrete way.
 I can't ask you questions.
 You can't give me orders or assume things I haven't told you.
 Your questions must be clear and without bias.
-You can ask me up to 2 questions.
-Every time you ask questions, you should start with: QUESTION:
+You can ask me up to 10 questions.
+After 2 questions, just say <CAMEL_TASK_DONE> to end the task.
+Never say <CAMEL_TASK_DONE> unless you want to end the task.
 
 You must greet me cordially and say goodbye kindly."""
 )
@@ -52,7 +53,7 @@ If you say goodbye, I will say goodbye.
 Never ask me the same question more than once.
 
 When the task is completed, you must only reply with a single word <CAMEL_TASK_DONE>.
-Never say <CAMEL_TASK_DONE> unless my responses have solved your task.
+Never say <CAMEL_TASK_DONE> unless you want to end the task.
 """
 )
 
@@ -74,8 +75,7 @@ with st.sidebar:
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.16)"),unsafe_allow_html=True)
     st.markdown("""
     # How does it work
-    Simply enter the topic of interest in the text field below and ideas will be generated.
-    You can also download the output as txt.
+    Enter the type of project on which you are going to raise the requirements, the role of your counterpart and your role in this project, all in the most detailed way possible.
     """)
     st.markdown(html_temp.format("rgba(55, 53, 47, 0.16)"),unsafe_allow_html=True)
     st.markdown("""
@@ -91,6 +91,11 @@ consultant_role_name = None
 st.markdown("""
 # Consulting Trainer
 """)
+
+st.markdown("""
+### Due to resource issues, this initial version (alpha) generates each text every 21 seconds.
+""")
+
 task = st.text_input("The project is about", disabled=False, placeholder="What is this project about?")
 customer_role_name = st.text_input("The role of my counterpart is", disabled=False, placeholder="What is the role of the user with whom I am going to interact?")
 consultant_role_name = st.text_input("My role is", disabled=False, placeholder="What is your role when interacting with the customer?")
@@ -152,5 +157,7 @@ if task and customer_role_name and consultant_role_name:
             assistant_ai_msg = assistant_agent.step(user_msg)
             assistant_msg = HumanMessage(content=assistant_ai_msg.content)
             st.text(f"Customer: ({customer_role_name}):\n\n{assistant_msg.content}\n\n")
+            time.sleep(21)
+            
             if "<CAMEL_TASK_DONE>" in user_msg.content:
                 break
