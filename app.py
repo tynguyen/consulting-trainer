@@ -88,6 +88,14 @@ task = st.text_input("The project is about", disabled=False, placeholder="What i
 customer_role_name = st.text_input("The role of my counterpart is", disabled=False, placeholder="What is the role of the user with whom I am going to interact?")
 consultant_role_name = st.text_input("My role is", disabled=False, placeholder="What is your role when interacting with the customer?")
 
+def get_sys_msgs(assistant_role_name: str, user_role_name: str, task: str):
+    assistant_sys_template = SystemMessagePromptTemplate.from_template(template=consultant_inception_prompt)
+    assistant_sys_msg = assistant_sys_template.format_messages(assistant_role_name=consultant_role_name, user_role_name=customer_role_name, task=task)[0]
+    
+    user_sys_template = SystemMessagePromptTemplate.from_template(template=customer_inception_prompt)
+    user_sys_msg = user_sys_template.format_messages(assistant_role_name=consultant_role_name, user_role_name=customer_role_name, task=task)[0]
+    
+    return assistant_sys_msg, user_sys_msg
 
 if task and customer_role_name and consultant_role_name:
     prompt = "Structure of a meeting to discuss the project on "+str(task)+" between "+str(customer_role_name)+" and you as a "+str(consultant_role_name)
@@ -138,49 +146,3 @@ if task and customer_role_name and consultant_role_name:
             st.text(f"AI Assistant ({assistant_role_name}):\n\n{assistant_msg.content}\n\n")
             if "<CAMEL_TASK_DONE>" in user_msg.content:
                 break
-
-
-def get_sys_msgs(assistant_role_name: str, user_role_name: str, task: str):
-    
-    assistant_sys_template = SystemMessagePromptTemplate.from_template(template=consultant_inception_prompt)
-    assistant_sys_msg = assistant_sys_template.format_messages(assistant_role_name=consultant_role_name, user_role_name=customer_role_name, task=task)[0]
-    
-    user_sys_template = SystemMessagePromptTemplate.from_template(template=customer_inception_prompt)
-    user_sys_msg = user_sys_template.format_messages(assistant_role_name=consultant_role_name, user_role_name=customer_role_name, task=task)[0]
-    
-    return assistant_sys_msg, user_sys_msg
-
-
-
-class CAMELAgent:
-
-    def __init__(
-        self,
-        system_message: SystemMessage,
-        model: ChatOpenAI,
-    ) -> None:
-        self.system_message = system_message
-        self.model = model
-        self.init_messages()
-
-    def reset(self) -> None:
-        self.init_messages()
-        return self.stored_messages
-
-    def init_messages(self) -> None:
-        self.stored_messages = [self.system_message]
-
-    def update_messages(self, message: BaseMessage) -> List[BaseMessage]:
-        self.stored_messages.append(message)
-        return self.stored_messages
-
-    def step(
-        self,
-        input_message: HumanMessage,
-    ) -> AIMessage:
-        messages = self.update_messages(input_message)
-
-        output_message = self.model(messages)
-        self.update_messages(output_message)
-
-        return output_message
