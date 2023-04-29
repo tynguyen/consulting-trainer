@@ -160,6 +160,6 @@ if task and customer_role_name and consultant_role_name:
             st.text(f"Customer: ({customer_role_name}):\n\n{assistant_msg.content}\n\n")
             time.sleep(21)
             
-            if n == 2
+            if n == 2:
                 st.text(f"Thank you ({customer_role_name}) for your time.")
                 break
