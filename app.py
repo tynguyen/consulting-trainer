@@ -144,7 +144,7 @@ st.markdown(hide, unsafe_allow_html=True)
 
 
 if task and customer_role_name and you_role_name:
-    prompt = "Structure of a meeting to discuss the project on "+str(task)" between "+str(customer_role_name)" and you as a "+str(consultant_role_name)
+    prompt = "Structure of a meeting to discuss the project on "+str(task)"+ between "+str(customer_role_name)+" and you as a "+str(consultant_role_name)
     task_full = "Build the structure of a meeting for a project about "+str(task)
     word_limit = 50 # word limit for task brainstorming
     if prompt:
