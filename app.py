@@ -140,7 +140,8 @@ if task and customer_role_name and consultant_role_name:
         # Initialize chats 
         assistant_msg = HumanMessage(
             content=(f"{user_sys_msg.content}. "
-                        "Now start to give me the questions one by one."))
+                        "Now start to give me the questions one by one."
+                        "Only reply with your answer."))
 
         user_msg = HumanMessage(content=f"{assistant_sys_msg.content}")
         user_msg = assistant_agent.step(user_msg)
