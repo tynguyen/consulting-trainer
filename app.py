@@ -35,8 +35,8 @@ I will answer you in the most concrete way.
 I can't ask you questions.
 You can't give me orders or assume things I haven't told you.
 Your questions must be clear and without bias.
-You can ask me up to 10 questions.
-After 2 questions, just say <CAMEL_TASK_DONE> to end the task.
+You can ask me up to 2 questions.
+After 2 questions, just thank your interlocutor for the conversation, and say <CAMEL_TASK_DONE> to end the task.
 Never say <CAMEL_TASK_DONE> unless you want to end the task.
 
 You must greet me cordially and say goodbye kindly."""
