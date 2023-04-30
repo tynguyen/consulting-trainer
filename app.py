@@ -64,7 +64,7 @@ os.environ["OPENAI_API_KEY"] = st.secrets["openaiKey"]
 image = Image.open('logo.jpg')
 st.set_page_config(page_title="Consulting Trainer")
 
-st.image(image, caption='Consulting Trainer logo')
+st.image(image, caption='')
 
 html_temp = """
                 <div style="background-color:{};padding:1px">
